@@ -1,0 +1,6 @@
+    /* Confirmation Modal */
+    .modal-overlay {
+      position: fixed; inset:0; background: rgba(0,0,0,0.56); display: none; align-items: center; justify-content: center; z-index: 3000;
+    }
+    .modal-overlay.open { display:flex; }
+    .modal { width:92%; max-width:520px; background: var(--panel); border-radius:10px; border:1px solid var(--border); padding:1rem; }

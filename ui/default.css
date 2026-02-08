@@ -1,0 +1,47 @@
+
+
+/* ===== 2. CORE SYSTEM LAYOUT ===== */
+@import url("/appearance/system/desktop.css");
+@import url("/appearance/system/splash_screen.css");
+@import url("/appearance/system/windows.css");
+@import url("/appearance/system/taskbar.css");
+
+/* ===== 3. SYSTEM UI COMPONENTS ===== */
+
+@import url("/appearance/system/lock_screen.css");
+@import url("/appearance/system/mini_lock_screen.css");
+@import url("/appearance/system/start_menu.css");
+@import url("/appearance/system/desktop_context_menu.css");
+
+/* ===== 4. SYSTEM SERVICES ===== */
+@import url("/appearance/system/notification_center.css");
+@import url("/appearance/system/power_menu.css");
+
+/* ===== 5. SYSTEM APPLICATIONS ===== */
+@import url("/appearance/system_apps/file_explorer.css");
+@import url("/appearance/system_apps/music_player.css");
+@import url("/appearance/system_apps/ai_assistant.css");
+@import url("/appearance/system_apps/app_launch.css");
+@import url("/appearance/system_apps/gesture_control_mode.css");
+
+/* ===== 6. UTILITIES & MODALS ===== */
+@import url("/appearance/utilities/animations.css");
+@import url("/appearance/utilities/app_download_modal.css");
+@import url("/appearance/utilities/confirmation_modal.css");
+@import url("/appearance/utilities/productivity_dash_board.css");
+@import url("/appearance/utilities/projects-grid.css");
+@import url("/appearance/utilities/insire_board.css");
+@import url("/appearance/utilities/live_caption.css");
+@import url("/appearance/utilities/settings_panels.css");
+
+/* ===== 7. PANELS ===== */
+@import url("/appearance/calender_panel.css");
+@import url("/appearance/quick_settings_panel.css");
+@import url("/appearance/search_panel.css");
+
+/* ===== 8. SETTINGS & THEMING ===== */
+@import url("/appearance/Settings.css");
+@import url("/appearance/theme_grid.css");
+
+/* ===== 9. FINAL OVERRIDES ===== */
+@import url("/appearance/styles.css"); /* If this contains overrides */

@@ -1,0 +1,4 @@
+So I guess in the next update we will be sliting up the index.html into maintainable parts
+And not to forget,I added some windows 11 inspired features and styling and would like to 
+add more advanced features including full bird store and also the bird code IDE for custom
+app development. And yeah thats it hope its enjoyable

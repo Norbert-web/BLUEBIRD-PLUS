@@ -1,0 +1,219 @@
+/* Small Realistic Window */
+:root {
+    --win-btn-size-sm: 30px;
+    --titlebar-height-sm: 36px;
+    --border-radius-sm: 10px;
+}
+
+/*  Window */
+.window {
+    position: absolute;
+    background: #f8f8f8; /*  solid light gray */
+    border: 1px solid #e5e5e5;
+    border-radius: var(--border-radius-sm);
+    box-shadow: 
+        0 2px 8px rgba(0, 0, 0, 0.08),
+        0 1px 2px rgba(0, 0, 0, 0.04),
+        inset 0 1px 0 #ffffff;
+    display: none;
+    flex-direction: column;
+    overflow: hidden;
+    opacity: 0;
+    transform: translateY(8px) scale(0.99);
+    transition: 
+        opacity 0.15s ease-out,
+        transform 0.15s ease-out;
+    z-index: 100;
+    
+    /* Small realistic size */
+    min-width: 280px;
+    min-height: 180px;
+    max-width: 85%;
+    max-height: 85%;
+    width: auto;
+    
+    /*  specific */
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    font-size: 13px;
+}
+
+.window.active { 
+    opacity: 1; 
+    transform: translateY(0) scale(1); 
+    display: flex;
+}
+
+/*  Titlebar */
+.window-header {
+    background: linear-gradient(180deg, #fdfdfd 0%, #f5f5f5 100%);
+    color: #1a1a1a;
+    padding: 0 8px;
+    display: flex; 
+    justify-content: space-between; 
+    align-items: center;
+    cursor: move; 
+    user-select: none;
+    border-bottom: 1px solid #e0e0e0;
+    gap: 8px;
+    height: var(--titlebar-height-sm);
+    min-height: 36px;
+    border-top-left-radius: var(--border-radius-sm);
+    border-top-right-radius: var(--border-radius-sm);
+}
+
+.window-title { 
+    font-weight: 500; 
+    display: flex; 
+    align-items: center; 
+    gap: 8px;
+    font-size: 12.5px;
+    padding-left: 4px;
+    line-height: 1;
+    flex: 1 1 auto;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    letter-spacing: 0.01em;
+}
+
+/*  Window Controls */
+.window-controls { 
+    display: flex; 
+    gap: 0; /* Windows buttons touch each other */
+    align-items: center; 
+    justify-content: flex-end; 
+}
+
+.win-btn { 
+    width: var(--win-btn-size-sm);
+    height: var(--win-btn-size-sm);
+    border-radius: 0; /* Square buttons like Windows 11 */
+    display: flex; 
+    align-items: center; 
+    justify-content: center; 
+    font-size: 11px; 
+    cursor: pointer;
+    transition: all 0.08s ease;
+    border: none;
+    background: transparent;
+    color: #5d5d5d;
+    padding: 0;
+    margin: 0;
+    position: relative;
+}
+
+.win-btn:hover {
+    background: #e5e5e5;
+    color: #1a1a1a;
+    transform: none; /* Windows doesn't lift buttons on hover */
+}
+
+.win-btn:active {
+    background: #d0d0d0;
+    transform: none;
+}
+
+/* Windows 11 Close Button */
+.win-close { 
+    background: transparent; 
+    color: #5d5d5d;
+    box-shadow: none;
+    border: none;
+}
+
+.win-close:hover { 
+    background: #e81123; 
+    color: white;
+}
+
+.win-close:active { 
+    background: #c50f1f; 
+}
+
+/* Windows 11 Minimize Button */
+.win-min { 
+    background: transparent; 
+    color: #5d5d5d;
+    box-shadow: none;
+    border: none;
+}
+
+.win-min:hover { 
+    background: #e5e5e5; 
+    color: #1a1a1a;
+}
+
+.win-min:active { 
+    background: #d0d0d0; 
+}
+
+/* Windows 11 Maximize Button */
+.win-max { 
+    background: transparent; 
+    color: #5d5d5d;
+    box-shadow: none;
+    border: none;
+}
+
+.win-max:hover { 
+    background: #e5e5e5; 
+    color: #1a1a1a;
+}
+
+.win-max:active { 
+    background: #d0d0d0; 
+}
+
+/* Windows 11 Window Content */
+.window-body { 
+    padding: 14px; 
+    flex: 1; 
+    overflow: auto; 
+    line-height: 1.5; 
+    color: #1a1a1a;
+    background: #ffffff;
+    font-size: 13px;
+}
+
+/* Windows 11 Scrollbar */
+.window-body::-webkit-scrollbar {
+    width: 8px;
+}
+
+.window-body::-webkit-scrollbar-track {
+    background: #f1f1f1;
+    border-radius: 2px;
+}
+
+.window-body::-webkit-scrollbar-thumb {
+    background: #c1c1c1;
+    border-radius: 2px;
+}
+
+.window-body::-webkit-scrollbar-thumb:hover {
+    background: #a8a8a8;
+}
+
+/* Windows 11 Resize Handle */
+.window-resize {
+    position: absolute; 
+    bottom: 0; 
+    right: 0; 
+    width: 12px; 
+    height: 12px; 
+    cursor: nwse-resize;
+    opacity: 0.5;
+    background: linear-gradient(135deg, 
+        transparent 50%, 
+        #0078d4 50%, 
+        #0078d4 55%, 
+        transparent 55%, 
+        transparent 70%, 
+        #0078d4 70%, 
+        #0078d4 75%, 
+        transparent 75%);
+}
+
+.window-resize:hover {
+    opacity: 0.8;
+}

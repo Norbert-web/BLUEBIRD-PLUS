@@ -1,0 +1,659 @@
+/* =====  DESKTOP - ULTRA COMPACT WITH WALLPAPER FIX ===== */
+:root {
+  --win11-accent: #0078d4;
+  --win11-accent-light: #2997ff;
+  --win11-surface: rgba(255, 255, 255, 0.05);
+  --win11-surface-solid: #2d2d2d;
+  --win11-border: rgba(255, 255, 255, 0.08);
+  --win11-hover: rgba(255, 255, 255, 0.08);
+  --win11-active: rgba(255, 255, 255, 0.12);
+  --win11-text: rgba(255, 255, 255, 0.95);
+  --win11-text-secondary: rgba(255, 255, 255, 0.6);
+  --win11-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  --win11-blur: blur(20px);
+  --win11-radius: 6px;
+  --win11-icon-size: 24px; 
+  --desktop-z-index: 1;
+  --wallpaper-z-index: 0;
+  --icons-z-index: 2;
+}
+    /* Wallpapers */
+    .wallpaper {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      background-size: cover;
+      background-position: center;
+      opacity: 0;
+      transition: opacity 0.6s var(--transition);
+    }
+    .wallpaper.active { opacity: 1; z-index: 0; }
+
+
+/* Desktop Area - Fixed for Right Click */
+#desktop {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 40px;
+  overflow: hidden;
+  cursor: default;
+  user-select: none;
+  background-color: transparent;
+  -webkit-tap-highlight-color: transparent;
+  z-index: var(--desktop-z-index);
+}
+
+/* Desktop Right Click Area */
+.desktop-area {
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 1;
+  background: transparent;
+}
+
+/* Desktop Icons Grid - ULTRA COMPACT */
+.desktop-icons {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 56px);
+  grid-auto-rows: 52px;
+  gap: 6px; 
+  padding: 8px; 
+  align-content: start;
+  justify-content: start;
+  position: relative;
+  z-index: var(--icons-z-index);
+  max-height: calc(100vh - 40px);
+  overflow: hidden;
+  pointer-events: auto;
+}
+
+/* Ultra Compact Icons */
+.icon {
+  width: 48px; 
+  height: 44px; 
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: all 0.12s cubic-bezier(0.4, 0, 0.2, 1);
+  position: relative;
+  padding: 3px;
+  background: transparent;
+  border: 1px solid transparent;
+  overflow: visible;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
+
+/* Icon Hover Effects */
+.icon:hover {
+  background: rgba(255, 255, 255, 0.06);
+  border-color: rgba(255, 255, 255, 0.1);
+  transform: translateY(-1px);
+}
+
+.icon:active {
+  background: rgba(255, 255, 255, 0.1);
+  transform: scale(0.96);
+}
+
+/* Selected Icon */
+.icon.selected {
+  background: rgba(0, 120, 212, 0.15);
+  border: 1px solid rgba(0, 120, 212, 0.4);
+}
+
+.icon.selected::after {
+  content: '';
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border: 1px solid var(--win11-accent);
+  border-radius: 5px;
+  pointer-events: none;
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0%, 100% { opacity: 0.6; }
+  50% { opacity: 0.3; }
+}
+
+/* Icon Image Container */
+.icon-img {
+  width: 28px; 
+  height: 28px; 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 4px;
+  margin-bottom: 2px;
+  transition: all 0.15s ease;
+  position: relative;
+}
+
+.icon:hover .icon-img {
+  transform: translateY(-1px);
+}
+
+.icon:active .icon-img {
+  transform: translateY(0);
+}
+
+.icon-img svg,
+.icon-img img {
+  width: 20px; 
+  height: 20px; 
+  object-fit: contain;
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.4));
+}
+
+/* Folder Icon Special Style */
+.icon.folder .icon-img {
+  background: rgba(66, 133, 244, 0.12);
+  border: 1px solid rgba(66, 133, 244, 0.25);
+}
+
+/* File Icon Special Style */
+.icon.file .icon-img {
+  background: rgba(255, 255, 255, 0.05);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+/* App Icon Special Style */
+.icon.app .icon-img {
+  background: linear-gradient(135deg, rgba(0, 120, 212, 0.1), rgba(0, 120, 212, 0.05));
+  border: 1px solid rgba(0, 120, 212, 0.15);
+}
+
+/* Icon Label - Ultra Compact */
+.icon-label {
+  font-size: 9px; 
+  color: white;
+  text-align: center;
+  padding: 2px 3px; /* Reduced */
+  border-radius: 3px;
+  background: rgba(0, 0, 0, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  max-width: 52px; 
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  opacity: 0;
+  visibility: hidden;
+  position: absolute;
+  bottom: -18px; /* Adjusted */
+  left: 50%;
+  transform: translateX(-50%);
+  transition: all 0.12s ease;
+  z-index: 100;
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.9);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  font-weight: 500;
+}
+
+/* Show Label on Hover */
+.icon:hover .icon-label,
+.icon.selected .icon-label {
+  opacity: 1;
+  visibility: visible;
+  bottom: -16px;
+}
+
+/* Tooltip - Ultra Compact */
+.icon[data-tooltip]:hover::after {
+  content: attr(data-tooltip);
+  position: absolute;
+  top: -28px; /* Reduced */
+  left: 50%;
+  transform: translateX(-50%);
+  background: rgba(0, 0, 0, 0.85);
+  color: white;
+  padding: 4px 8px;
+  border-radius: 4px;
+  font-size: 10px; /* Reduced */
+  white-space: nowrap;
+  z-index: 1000;
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  animation: fadeIn 0.15s ease;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* Selection Rectangle */
+#selection-rectangle {
+  position: absolute;
+  border: 1px solid rgba(0, 120, 212, 0.6);
+  background: rgba(0, 120, 212, 0.15);
+  pointer-events: none;
+  z-index: 999;
+  display: none;
+}
+
+#selection-rectangle.active {
+  display: block;
+}
+
+/* Desktop Context Menu - Fixed */
+.context-menu {
+  display: none;
+  position: fixed;
+  background: rgba(42, 42, 42, 0.98);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  box-shadow: 
+    0 12px 48px rgba(0, 0, 0, 0.4),
+    0 8px 24px rgba(0, 0, 0, 0.3),
+    0 0 0 1px rgba(255, 255, 255, 0.05) inset;
+  min-width: 180px; /* Reduced */
+  padding: 6px;
+  z-index: 10000;
+  animation: menuSlideIn 0.12s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.context-menu.visible {
+  display: block;
+}
+
+@keyframes menuSlideIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-6px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+.context-menu-item {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 10px; /* Reduced */
+  border-radius: 5px;
+  cursor: pointer;
+  font-size: 11px; /* Reduced */
+  color: rgba(255, 255, 255, 0.95);
+  transition: all 0.1s ease;
+  position: relative;
+  user-select: none;
+  height: 28px; /* Added fixed height */
+}
+
+.context-menu-item:hover {
+  background: rgba(255, 255, 255, 0.12);
+}
+
+.context-menu-item:active {
+  background: rgba(255, 255, 255, 0.15);
+}
+
+.context-menu-icon {
+  width: 14px; /* Reduced */
+  height: 14px; /* Reduced */
+  opacity: 0.9;
+  flex-shrink: 0;
+}
+
+.context-menu-arrow {
+  margin-left: auto;
+  opacity: 0.6;
+  font-size: 9px;
+  margin-right: -4px;
+}
+
+.context-menu-divider {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.1);
+  margin: 4px 0;
+}
+
+/* Context Submenu */
+.context-submenu {
+  display: none;
+  position: absolute;
+  left: 100%;
+  top: -6px;
+  background: rgba(42, 42, 42, 0.98);
+  backdrop-filter: blur(20px) saturate(180%);
+  -webkit-backdrop-filter: blur(20px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
+  min-width: 150px; /* Reduced */
+  padding: 6px;
+  z-index: 10001;
+}
+
+.context-menu-item:hover .context-submenu {
+  display: block;
+}
+
+/* Selection Overlay */
+#selection-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(0, 120, 212, 0.05);
+  pointer-events: none;
+  z-index: 998;
+  opacity: 0;
+  transition: opacity 0.15s ease;
+}
+
+#selection-overlay.active {
+  opacity: 1;
+}
+
+/* Light Mode Support */
+@media (prefers-color-scheme: light) {
+  .icon-label {
+    background: rgba(255, 255, 255, 0.95);
+    color: #000;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .icon[data-tooltip]:hover::after {
+    background: rgba(255, 255, 255, 0.98);
+    color: #000;
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .icon:hover {
+    background: rgba(0, 0, 0, 0.04);
+  }
+  
+  .context-menu {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .context-menu-item {
+    color: rgba(0, 0, 0, 0.95);
+  }
+  
+  .context-menu-item:hover {
+    background: rgba(0, 0, 0, 0.06);
+  }
+  
+  .context-menu-divider {
+    background: rgba(0, 0, 0, 0.1);
+  }
+}
+
+/* Ultra Compact Mode */
+body.compact-mode .desktop-icons {
+  grid-template-columns: repeat(auto-fill, 48px); /* Further reduced */
+  grid-auto-rows: 44px; /* Further reduced */
+  gap: 4px; /* Further reduced */
+  padding: 6px; /* Further reduced */
+}
+
+body.compact-mode .icon {
+  width: 40px; /* Further reduced */
+  height: 36px; /* Further reduced */
+}
+
+body.compact-mode .icon-img {
+  width: 20px; /* Further reduced */
+  height: 20px; /* Further reduced */
+}
+
+body.compact-mode .icon-img svg,
+body.compact-mode .icon-img img {
+  width: 16px; /* Further reduced */
+  height: 16px; /* Further reduced */
+}
+
+body.compact-mode .icon-label {
+  font-size: 8px; /* Further reduced */
+  max-width: 40px; /* Further reduced */
+  bottom: -16px; /* Adjusted */
+}
+
+/* Touch Device Optimizations */
+@media (max-width: 768px) {
+  .desktop-icons {
+    grid-template-columns: repeat(auto-fill, 52px); /* Slightly larger for touch */
+    grid-auto-rows: 48px;
+    gap: 8px;
+    padding: 10px;
+  }
+  
+  .icon {
+    width: 48px;
+    height: 42px;
+  }
+  
+  .icon-label {
+    font-size: 9px;
+    bottom: -18px;
+  }
+  
+  .icon:hover .icon-label,
+  .icon.selected .icon-label {
+    bottom: -16px;
+  }
+}
+
+/* EXTREME COMPACT MODE - For minimal interfaces */
+body.extreme-compact .desktop-icons {
+  grid-template-columns: repeat(auto-fill, 40px);
+  grid-auto-rows: 36px;
+  gap: 3px;
+  padding: 4px;
+}
+
+body.extreme-compact .icon {
+  width: 36px;
+  height: 32px;
+  padding: 2px;
+}
+
+body.extreme-compact .icon-img {
+  width: 18px;
+  height: 18px;
+  margin-bottom: 1px;
+}
+
+body.extreme-compact .icon-img svg,
+body.extreme-compact .icon-img img {
+  width: 14px;
+  height: 14px;
+}
+
+body.extreme-compact .icon-label {
+  font-size: 7px;
+  max-width: 36px;
+  padding: 1px 2px;
+  bottom: -14px;
+}
+
+/* Grid View Mode */
+body.grid-view .desktop-icons {
+  grid-template-columns: repeat(auto-fill, minmax(80px, 1fr));
+  grid-auto-rows: 80px;
+  gap: 8px;
+  padding: 12px;
+}
+
+body.grid-view .icon {
+  width: 100%;
+  height: 100%;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+body.grid-view .icon-img {
+  width: 40px;
+  height: 40px;
+  margin-bottom: 6px;
+}
+
+body.grid-view .icon-img svg,
+body.grid-view .icon-img img {
+  width: 28px;
+  height: 28px;
+}
+
+body.grid-view .icon-label {
+  position: static;
+  opacity: 1;
+  visibility: visible;
+  max-width: 100%;
+  white-space: normal;
+  text-align: center;
+  word-break: break-word;
+  padding: 2px 4px;
+  margin-top: 2px;
+}
+
+/* CUSTOM WALLPAPER SUPPORT FIXES */
+.custom-wallpaper {
+  background-size: cover !important;
+  background-position: center !important;
+  background-repeat: no-repeat !important;
+  filter: brightness(0.9) saturate(1.1); /* Subtle enhancement */
+}
+
+.wallpaper-loading {
+  background: linear-gradient(45deg, #1a1a1a 25%, #2a2a2a 25%, #2a2a2a 50%, #1a1a1a 50%, #1a1a1a 75%, #2a2a2a 75%, #2a2a2a);
+  background-size: 40px 40px;
+  animation: wallpaperLoading 1s linear infinite;
+}
+
+@keyframes wallpaperLoading {
+  0% { background-position: 0 0; }
+  100% { background-position: 40px 40px; }
+}
+
+/* Wallpaper Fade Animation */
+.wallpaper-fade-enter {
+  opacity: 0;
+}
+
+.wallpaper-fade-enter-active {
+  opacity: 1;
+  transition: opacity 0.8s ease-in-out;
+}
+
+.wallpaper-fade-exit {
+  opacity: 1;
+}
+
+.wallpaper-fade-exit-active {
+  opacity: 0;
+  transition: opacity 0.8s ease-in-out;
+}
+
+/* Wallpaper Overlay Effects */
+.wallpaper-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.1) 0%,
+    rgba(0, 0, 0, 0.05) 50%,
+    rgba(0, 0, 0, 0.1) 100%
+  );
+  pointer-events: none;
+  z-index: 1;
+}
+
+/* ICON SIZING CLASSES - Add these for different icon sizes */
+.icon-xs { --icon-size: 16px; }
+.icon-sm { --icon-size: 20px; }
+.icon-md { --icon-size: 24px; }
+.icon-lg { --icon-size: 32px; }
+.icon-xl { --icon-size: 40px; }
+
+.icon[class*="icon-"] .icon-img {
+  width: var(--icon-size);
+  height: var(--icon-size);
+}
+
+.icon[class*="icon-"] .icon-img svg,
+.icon[class*="icon-"] .icon-img img {
+  width: calc(var(--icon-size) * 0.7);
+  height: calc(var(--icon-size) * 0.7);
+}
+
+/* Desktop Theme Colors */
+.desktop-dark {
+  background-color: #1a1a1a;
+}
+
+.desktop-light {
+  background-color: #f3f3f3;
+}
+
+.desktop-accent {
+  background-color: var(--win11-accent);
+}
+
+/* Taskbar Adjustments for Wallpaper */
+#taskbar {
+  z-index: 1000; /* Ensure taskbar is above wallpaper */
+  background: rgba(32, 32, 32, 0.8);
+  backdrop-filter: blur(20px);
+  -webkit-backdrop-filter: blur(20px);
+}
+
+/* Fix for wallpaper behind icons */
+#desktop-wallpaper {
+  z-index: 0;
+}
+
+.desktop-icons {
+  z-index: 2;
+}
+
+/* Ensure icons are visible on all wallpapers */
+.icon-label {
+  text-shadow: 
+    0 1px 2px rgba(0, 0, 0, 0.8),
+    0 0 4px rgba(0, 0, 0, 0.6);
+}
+
+/* High contrast mode for better visibility */
+@media (prefers-contrast: high) {
+  .icon-label {
+    background: rgba(0, 0, 0, 0.95);
+    border: 2px solid white;
+  }
+  
+  .icon.selected {
+    border-width: 2px;
+  }
+}
+
+/* Reduced motion */
+@media (prefers-reduced-motion: reduce) {
+  .icon,
+  .icon-img,
+  .icon-label,
+  .context-menu,
+  .wallpaper {
+    transition: none !important;
+    animation: none !important;
+  }
+}

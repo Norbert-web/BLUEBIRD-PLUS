@@ -1,0 +1,391 @@
+/* Desktop context menu */
+#desktop-context-menu {
+  position: fixed;
+  background: rgba(32, 32, 32, 0.98);
+  backdrop-filter: blur(30px) saturate(180%);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4),
+              0 1px 0 rgba(255, 255, 255, 0.05) inset;
+  padding: 4px;
+  z-index: 4000;
+  display: none;
+  min-width: 160px;
+  max-width: 200px;
+  animation: ctxFadeIn 0.12s cubic-bezier(0.2, 0, 0, 1);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+  user-select: none;
+}
+
+@keyframes ctxFadeIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95) translateY(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}
+
+#desktop-context-menu.visible {
+  display: block;
+}
+
+/* Context menu sections */
+.ctx-section {
+  margin-bottom: 2px;
+  padding-bottom: 2px;
+  border-bottom: 1px solid rgba(255, 255, 255, 0.06);
+}
+
+.ctx-section:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+/* Context menu items */
+#desktop-context-menu .ctx-item {
+  padding: 6px 8px;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border-radius: 5px;
+  font-size: 12px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.9);
+  transition: all 0.12s cubic-bezier(0.2, 0, 0, 1);
+  position: relative;
+  overflow: hidden;
+  white-space: nowrap;
+}
+
+#desktop-context-menu .ctx-item::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  background: rgba(255, 255, 255, 0.08);
+  opacity: 0;
+  transition: opacity 0.12s;
+  border-radius: 5px;
+}
+
+#desktop-context-menu .ctx-item:hover::before {
+  opacity: 1;
+}
+
+#desktop-context-menu .ctx-item:active {
+  transform: scale(0.98);
+}
+
+/* Disabled items */
+#desktop-context-menu .ctx-item.disabled {
+  opacity: 0.4;
+  cursor: not-allowed;
+  pointer-events: none;
+}
+
+/* Icon styling */
+.ctx-icon {
+  width: 16px;
+  height: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  position: relative;
+  z-index: 1;
+}
+
+.ctx-icon svg {
+  width: 14px;
+  height: 14px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.ctx-item:hover .ctx-icon svg {
+  color: #fff;
+}
+
+/* Label styling */
+.ctx-label {
+  flex: 1;
+  position: relative;
+  z-index: 1;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+/* Shortcut key styling */
+.ctx-shortcut {
+  font-size: 10px;
+  color: rgba(255, 255, 255, 0.4);
+  margin-left: 12px;
+  font-family: 'Segoe UI', monospace;
+  position: relative;
+  z-index: 1;
+  flex-shrink: 0;
+}
+
+/* Separator */
+.ctx-separator {
+  height: 1px;
+  background: rgba(255, 255, 255, 0.08);
+  margin: 3px 8px;
+}
+
+/* Submenu indicator */
+.ctx-item.has-submenu::after {
+  content: '›';
+  margin-left: auto;
+  font-size: 14px;
+  color: rgba(255, 255, 255, 0.5);
+  position: relative;
+  z-index: 1;
+  font-weight: 300;
+}
+
+/* Checkmark items */
+.ctx-item.checked .ctx-icon::before {
+  content: '✓';
+  position: absolute;
+  color: #0078d4;
+  font-size: 12px;
+  font-weight: 600;
+}
+
+/* Accent colors for specific items */
+.ctx-item.delete .ctx-icon svg {
+  color: rgba(232, 17, 35, 0.8);
+}
+
+.ctx-item.delete:hover .ctx-icon svg {
+  color: #e81123;
+}
+
+.ctx-item.new .ctx-icon svg {
+  color: rgba(0, 120, 212, 0.8);
+}
+
+.ctx-item.new:hover .ctx-icon svg {
+  color: #0078d4;
+}
+
+/* Submenu styling */
+.ctx-submenu {
+  position: absolute;
+  left: 100%;
+  top: 0;
+  background: rgba(32, 32, 32, 0.98);
+  backdrop-filter: blur(30px);
+  border: 1px solid rgba(255, 255, 255, 0.12);
+  border-radius: 8px;
+  padding: 4px;
+  min-width: 140px;
+  box-shadow: 0 4px 24px rgba(0, 0, 0, 0.4);
+  display: none;
+  animation: submenuSlide 0.12s cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes submenuSlide {
+  from {
+    opacity: 0;
+    transform: translateX(-4px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+.ctx-item:hover > .ctx-submenu {
+  display: block;
+}
+
+/* Light mode support */
+@media (prefers-color-scheme: light) {
+  #desktop-context-menu {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(0, 0, 0, 0.1);
+    box-shadow: 0 4px 24px rgba(0, 0, 0, 0.15),
+                0 1px 0 rgba(255, 255, 255, 0.9) inset;
+  }
+  
+  #desktop-context-menu .ctx-item {
+    color: rgba(0, 0, 0, 0.9);
+  }
+  
+  #desktop-context-menu .ctx-item::before {
+    background: rgba(0, 0, 0, 0.06);
+  }
+  
+  .ctx-icon svg {
+    color: rgba(0, 0, 0, 0.6);
+  }
+  
+  .ctx-item:hover .ctx-icon svg {
+    color: #000;
+  }
+  
+  .ctx-separator {
+    background: rgba(0, 0, 0, 0.08);
+  }
+  
+  .ctx-shortcut {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .ctx-item.has-submenu::after {
+    color: rgba(0, 0, 0, 0.5);
+  }
+  
+  .ctx-submenu {
+    background: rgba(255, 255, 255, 0.98);
+    border-color: rgba(0, 0, 0, 0.1);
+  }
+  
+  .ctx-item.delete .ctx-icon svg {
+    color: rgba(232, 17, 35, 0.7);
+  }
+  
+  .ctx-item.delete:hover .ctx-icon svg {
+    color: #c42b1c;
+  }
+}
+
+/* Ultra compact mode */
+body.ultra-small-mode #desktop-context-menu {
+  min-width: 140px;
+  padding: 3px;
+}
+
+body.ultra-small-mode #desktop-context-menu .ctx-item {
+  padding: 5px 6px;
+  font-size: 11px;
+  gap: 6px;
+}
+
+body.ultra-small-mode .ctx-icon {
+  width: 14px;
+  height: 14px;
+}
+
+body.ultra-small-mode .ctx-icon svg {
+  width: 12px;
+  height: 12px;
+}
+
+body.ultra-small-mode .ctx-shortcut {
+  font-size: 9px;
+  margin-left: 8px;
+}
+
+/* Responsive for mobile */
+@media (max-width: 768px) {
+  #desktop-context-menu {
+    min-width: 150px;
+    max-width: 180px;
+    padding: 4px;
+  }
+  
+  #desktop-context-menu .ctx-item {
+    padding: 7px 8px;
+    font-size: 12px;
+  }
+  
+  /* Larger touch targets on mobile */
+  .ctx-item {
+    min-height: 32px;
+  }
+  
+  /* Hide submenus on mobile or show as stacked */
+  .ctx-submenu {
+    position: static;
+    background: rgba(0, 0, 0, 0.1);
+    border: none;
+    box-shadow: none;
+    margin-top: 2px;
+    margin-left: 12px;
+    display: none;
+  }
+  
+  .ctx-item:hover > .ctx-submenu {
+    display: block;
+  }
+}
+
+/* Keyboard navigation support */
+.ctx-item:focus-visible {
+  outline: 2px solid #0078d4;
+  outline-offset: -2px;
+  background: rgba(0, 120, 212, 0.15) !important;
+}
+
+/* Active/Selected state */
+.ctx-item.active {
+  background: rgba(0, 120, 212, 0.2) !important;
+}
+
+.ctx-item.active::before {
+  opacity: 1;
+  background: rgba(0, 120, 212, 0.15);
+}
+
+/* Context menu group headers */
+.ctx-header {
+  padding: 6px 8px 4px 8px;
+  font-size: 10px;
+  font-weight: 600;
+  color: rgba(255, 255, 255, 0.5);
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  cursor: default;
+  user-select: none;
+}
+
+@media (prefers-color-scheme: light) {
+  .ctx-header {
+    color: rgba(0, 0, 0, 0.5);
+  }
+}
+
+/* Loading state */
+.ctx-item.loading .ctx-label {
+  opacity: 0.7;
+}
+
+.ctx-item.loading .ctx-icon::before {
+  content: '';
+  width: 12px;
+  height: 12px;
+  border: 2px solid rgba(255, 255, 255, 0.3);
+  border-top-color: #0078d4;
+  border-radius: 50%;
+  animation: ctxSpin 0.8s linear infinite;
+}
+
+@keyframes ctxSpin {
+  to { transform: rotate(360deg); }
+}
+
+/* Right-to-left support */
+[dir="rtl"] .ctx-item.has-submenu::after {
+  content: '‹';
+  margin-left: 0;
+  margin-right: auto;
+}
+
+[dir="rtl"] .ctx-shortcut {
+  margin-left: 0;
+  margin-right: 12px;
+}
+
+[dir="rtl"] .ctx-submenu {
+  left: auto;
+  right: 100%;
+}

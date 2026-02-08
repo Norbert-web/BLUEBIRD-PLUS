@@ -1,0 +1,672 @@
+/* ===== LOCK SCREEN STYLES ===== */
+.lock-screen {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 100000;
+  display: none;
+  overflow: hidden;
+}
+
+.lock-screen.active {
+  display: block;
+  animation: lockFadeIn 0.3s cubic-bezier(0.2, 0, 0, 1);
+}
+
+@keyframes lockFadeIn {
+  from {
+    opacity: 0;
+    backdrop-filter: blur(0px);
+  }
+  to {
+    opacity: 1;
+    backdrop-filter: blur(20px);
+  }
+}
+
+/* Lock Screen Background  */
+.lock-bg {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+}
+
+.lock-bg-gradient {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, 
+    rgba(0, 120, 212, 0.3) 0%, 
+    rgba(121, 89, 206, 0.25) 50%, 
+    rgba(247, 99, 12, 0.2) 100%);
+  animation: gradientShift 20s ease infinite;
+  opacity: 0.6;
+}
+
+@keyframes gradientShift {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+.lock-bg-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.65);
+  backdrop-filter: blur(40px);
+}
+
+/* Ultra Compact Lock Screen Content */
+.lock-content {
+  position: relative;
+  z-index: 2;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 20px;
+}
+
+/* Top Section - Minimal */
+.lock-top {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  animation: slideDown 0.4s cubic-bezier(0.2, 0, 0, 1);
+  margin-bottom: auto;
+  padding-top: 20px;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    transform: translateY(-15px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.lock-time-container {
+  text-align: left;
+}
+
+.lock-time {
+  font-size: 48px;
+  font-weight: 300;
+  color: #fff;
+  line-height: 1;
+  margin-bottom: 4px;
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.3);
+  font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+  font-variant-numeric: tabular-nums;
+}
+
+.lock-date {
+  font-size: 14px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+.lock-widgets {
+  display: flex;
+  gap: 8px;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.lock-widget {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  padding: 6px 10px;
+  border-radius: 8px;
+  color: #fff;
+  font-size: 11px;
+  font-weight: 500;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.lock-widget:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-1px);
+}
+
+.lock-widget svg {
+  width: 12px;
+  height: 12px;
+}
+
+/* Center Section - Ultra Compact */
+.lock-center {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  margin: 0 auto;
+  width: 100%;
+  max-width: 320px;
+  animation: scaleIn 0.4s cubic-bezier(0.2, 0, 0, 1) 0.1s backwards;
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+.lock-avatar-wrapper {
+  position: relative;
+}
+
+.lock-avatar {
+  width: 60px;
+  height: 60px;
+  position: relative;
+  cursor: pointer;
+  transition: transform 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.lock-avatar:hover {
+  transform: scale(1.05);
+}
+
+.avatar-ring {
+  position: absolute;
+  top: -3px;
+  left: -3px;
+  right: -3px;
+  bottom: -3px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0078d4, #7959ce, #f7630c);
+  animation: rotate 3s linear infinite;
+  opacity: 0.6;
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+.avatar-content {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+  background: linear-gradient(135deg, #0078d4, #7959ce);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 20px;
+  font-weight: 600;
+  color: #fff;
+  overflow: hidden;
+  border: 2px solid rgba(255, 255, 255, 0.2);
+}
+
+.avatar-content img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+
+.lock-user-info {
+  text-align: center;
+}
+
+.lock-username {
+  font-size: 18px;
+  font-weight: 500;
+  color: #fff;
+  margin-bottom: 3px;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, 0.3);
+}
+
+.lock-status {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.6);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+}
+
+/* Password Input - Windows 11 Style */
+.lock-password-container {
+  width: 100%;
+  animation: slideUp 0.3s cubic-bezier(0.2, 0, 0, 1) 0.2s backwards;
+  margin-top: 12px;
+}
+
+@keyframes slideUp {
+  from {
+    opacity: 0;
+    transform: translateY(10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.password-input-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+}
+
+.lock-password-input {
+  width: 100%;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.15);
+  color: #fff;
+  padding: 10px 40px 10px 14px;
+  border-radius: 8px;
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+  font-family: 'Segoe UI', system-ui, sans-serif;
+}
+
+.lock-password-input::placeholder {
+  color: rgba(255, 255, 255, 0.4);
+}
+
+.lock-password-input:focus {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.1);
+}
+
+.password-show-btn {
+  position: absolute;
+  right: 8px;
+  background: transparent;
+  border: none;
+  color: rgba(255, 255, 255, 0.5);
+  cursor: pointer;
+  padding: 4px;
+  border-radius: 4px;
+  transition: all 0.15s;
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.password-show-btn:hover {
+  background: rgba(255, 255, 255, 0.08);
+  color: #fff;
+}
+
+.password-show-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+/* Error Message */
+.lock-error-message {
+  margin-top: 8px;
+  padding: 8px 12px;
+  background: rgba(232, 17, 35, 0.15);
+  border: 1px solid rgba(232, 17, 35, 0.25);
+  border-radius: 6px;
+  color: #ff6b7d;
+  font-size: 12px;
+  text-align: center;
+  animation: shake 0.3s;
+  backdrop-filter: blur(10px);
+}
+
+@keyframes shake {
+  0%, 100% { transform: translateX(0); }
+  25% { transform: translateX(-3px); }
+  75% { transform: translateX(3px); }
+}
+
+/* Unlock Button - Windows 11 Style */
+.lock-unlock-btn {
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(10px);
+  border: 1.5px solid rgba(255, 255, 255, 0.2);
+  color: #fff;
+  padding: 10px 24px;
+  border-radius: 8px;
+  font-size: 13px;
+  font-weight: 500;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+  margin-top: 12px;
+  width: 100%;
+  justify-content: center;
+}
+
+.lock-unlock-btn:hover {
+  background: rgba(255, 255, 255, 0.15);
+  border-color: rgba(255, 255, 255, 0.3);
+  transform: translateY(-1px);
+}
+
+.lock-unlock-btn:active {
+  transform: translateY(0);
+}
+
+.lock-unlock-btn svg {
+  width: 14px;
+  height: 14px;
+}
+
+.lock-hint {
+  font-size: 11px;
+  color: rgba(255, 255, 255, 0.5);
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.3);
+  text-align: center;
+  margin-top: 6px;
+}
+
+/* Bottom Section - Minimal */
+.lock-bottom {
+  display: flex;
+  justify-content: center;
+  animation: slideUp 0.4s cubic-bezier(0.2, 0, 0, 1) 0.3s backwards;
+  margin-top: auto;
+  padding-bottom: 20px;
+}
+
+.lock-quick-actions {
+  display: flex;
+  gap: 8px;
+}
+
+.lock-action-btn {
+  width: 40px;
+  height: 40px;
+  background: rgba(255, 255, 255, 0.08);
+  backdrop-filter: blur(10px);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  border-radius: 8px;
+  color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s cubic-bezier(0.2, 0, 0, 1);
+}
+
+.lock-action-btn:hover {
+  background: rgba(255, 255, 255, 0.12);
+  transform: translateY(-2px);
+}
+
+.lock-action-btn svg {
+  width: 16px;
+  height: 16px;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .lock-content {
+    padding: 16px;
+  }
+  
+  .lock-top {
+    padding-top: 16px;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+  }
+  
+  .lock-time-container {
+    text-align: center;
+  }
+  
+  .lock-time {
+    font-size: 42px;
+  }
+  
+  .lock-date {
+    font-size: 13px;
+  }
+  
+  .lock-widgets {
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    margin-top: 8px;
+  }
+  
+  .lock-widget {
+    font-size: 10px;
+    padding: 5px 8px;
+  }
+  
+  .lock-center {
+    max-width: 280px;
+    gap: 12px;
+  }
+  
+  .lock-avatar {
+    width: 56px;
+    height: 56px;
+  }
+  
+  .avatar-content {
+    font-size: 18px;
+  }
+  
+  .lock-username {
+    font-size: 16px;
+  }
+  
+  .lock-status {
+    font-size: 11px;
+  }
+  
+  .lock-password-input {
+    padding: 9px 36px 9px 12px;
+    font-size: 13px;
+  }
+  
+  .lock-unlock-btn {
+    padding: 9px 20px;
+    font-size: 12px;
+  }
+  
+  .lock-bottom {
+    padding-bottom: 16px;
+  }
+  
+  .lock-action-btn {
+    width: 36px;
+    height: 36px;
+  }
+}
+
+@media (max-width: 480px) {
+  .lock-content {
+    padding: 12px;
+  }
+  
+  .lock-time {
+    font-size: 36px;
+  }
+  
+  .lock-date {
+    font-size: 12px;
+  }
+  
+  .lock-widgets {
+    gap: 6px;
+  }
+  
+  .lock-widget {
+    padding: 4px 6px;
+    font-size: 9px;
+  }
+  
+  .lock-center {
+    max-width: 240px;
+  }
+  
+  .lock-avatar {
+    width: 48px;
+    height: 48px;
+  }
+  
+  .avatar-content {
+    font-size: 16px;
+  }
+  
+  .lock-username {
+    font-size: 14px;
+  }
+  
+  .lock-status {
+    font-size: 10px;
+  }
+  
+  .lock-password-input {
+    font-size: 12px;
+    padding: 8px 32px 8px 12px;
+  }
+  
+  .lock-unlock-btn {
+    padding: 8px 16px;
+    font-size: 11px;
+  }
+  
+  .lock-action-btn {
+    width: 32px;
+    height: 32px;
+  }
+  
+  .lock-action-btn svg {
+    width: 14px;
+    height: 14px;
+  }
+}
+
+/* Ultra Small Mode */
+body.ultra-small-mode .lock-screen {
+  background: rgba(0, 0, 0, 0.7);
+}
+
+body.ultra-small-mode .lock-time {
+  font-size: 32px;
+}
+
+body.ultra-small-mode .lock-date {
+  font-size: 11px;
+}
+
+body.ultra-small-mode .lock-avatar {
+  width: 40px;
+  height: 40px;
+}
+
+body.ultra-small-mode .lock-username {
+  font-size: 12px;
+}
+
+/* Windows 11 Light Mode Support */
+@media (prefers-color-scheme: light) {
+  .lock-bg-gradient {
+    background: linear-gradient(135deg, 
+      rgba(0, 120, 212, 0.2) 0%, 
+      rgba(121, 89, 206, 0.15) 50%, 
+      rgba(247, 99, 12, 0.1) 100%);
+  }
+  
+  .lock-bg-overlay {
+    background: rgba(255, 255, 255, 0.85);
+    backdrop-filter: blur(30px);
+  }
+  
+  .lock-time,
+  .lock-date,
+  .lock-username,
+  .lock-status {
+    color: #000;
+    text-shadow: 0 1px 3px rgba(255, 255, 255, 0.5);
+  }
+  
+  .lock-widget,
+  .lock-password-input,
+  .lock-unlock-btn,
+  .lock-action-btn {
+    background: rgba(0, 0, 0, 0.06);
+    border-color: rgba(0, 0, 0, 0.1);
+    color: #000;
+  }
+  
+  .lock-password-input::placeholder {
+    color: rgba(0, 0, 0, 0.4);
+  }
+  
+  .lock-error-message {
+    background: rgba(232, 17, 35, 0.1);
+    border-color: rgba(232, 17, 35, 0.2);
+    color: #c42b1c;
+  }
+}
+
+/* Lock screen show password animation */
+.lock-password-input.show-password {
+  letter-spacing: 1px;
+}
+
+/* Focus state for accessibility */
+.lock-password-input:focus-visible {
+  outline: 2px solid #0078d4;
+  outline-offset: 2px;
+}
+
+/* Loading state for unlock */
+.lock-unlock-btn.loading {
+  opacity: 0.7;
+  pointer-events: none;
+}
+
+.lock-unlock-btn.loading svg {
+  animation: spin 1s linear infinite;
+}
+
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}

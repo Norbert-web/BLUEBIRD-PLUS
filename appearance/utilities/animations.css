@@ -1,0 +1,253 @@
+/* ===== BACKGROUND ANIMATIONS ===== */
+#bg-animation-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.5s;
+}
+
+#bg-animation-canvas.active {
+  opacity: 1;
+}
+
+.particle {
+  position: absolute;
+  pointer-events: none;
+}
+
+/* Snowflakes */
+.snowflake {
+  color: #fff;
+  font-size: 1em;
+  font-family: Arial, sans-serif;
+  text-shadow: 0 0 5px rgba(255,255,255,0.8);
+  animation: snowfall linear infinite;
+}
+
+@keyframes snowfall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 0;
+  }
+  10% {
+    opacity: 1;
+  }
+  90% {
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}
+
+/* Bubbles */
+.bubble {
+  border-radius: 50%;
+  background: radial-gradient(circle at 30% 30%, rgba(255,255,255,0.8), rgba(74,222,128,0.3));
+  border: 1px solid rgba(255,255,255,0.3);
+  box-shadow: inset 0 0 20px rgba(255,255,255,0.3), 0 0 20px rgba(74,222,128,0.2);
+  animation: bubbleRise linear infinite;
+}
+
+@keyframes bubbleRise {
+  0% {
+    transform: translateY(100vh) translateX(0) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  50% {
+    transform: translateY(50vh) translateX(var(--drift-x, 0)) scale(1);
+  }
+  90% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(-10vh) translateX(calc(var(--drift-x, 0) * 2)) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Stars */
+.star {
+  background: #fff;
+  border-radius: 50%;
+  box-shadow: 0 0 6px #fff, 0 0 12px rgba(74,222,128,0.5);
+  animation: starTwinkle ease-in-out infinite;
+}
+
+@keyframes starTwinkle {
+  0%, 100% {
+    opacity: 0.3;
+    transform: scale(0.8);
+  }
+  50% {
+    opacity: 1;
+    transform: scale(1.2);
+  }
+}
+
+/* Rain */
+.raindrop {
+  width: 2px;
+  background: linear-gradient(to bottom, rgba(59,130,246,0.8), rgba(59,130,246,0.1));
+  animation: rainfall linear infinite;
+}
+
+@keyframes rainfall {
+  0% {
+    transform: translateY(-10px);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.8;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Hearts */
+.heart {
+  color: #ff6b9d;
+  font-size: 1.5em;
+  text-shadow: 0 0 10px rgba(255,107,157,0.6);
+  animation: heartFloat ease-in-out infinite;
+}
+
+@keyframes heartFloat {
+  0% {
+    transform: translateY(100vh) rotate(0deg) scale(0.5);
+    opacity: 0;
+  }
+  10% {
+    opacity: 0.9;
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) scale(1);
+  }
+  90% {
+    opacity: 0.9;
+  }
+  100% {
+    transform: translateY(-10vh) rotate(360deg) scale(0.5);
+    opacity: 0;
+  }
+}
+
+/* Confetti */
+.confetti {
+  width: 10px;
+  height: 10px;
+  animation: confettiFall ease-in infinite;
+}
+
+@keyframes confettiFall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh) rotate(720deg);
+    opacity: 0;
+  }
+}
+
+/* Fireflies */
+.firefly {
+  width: 4px;
+  height: 4px;
+  border-radius: 50%;
+  background: #ffd700;
+  box-shadow: 0 0 10px #ffd700, 0 0 20px rgba(255,215,0,0.5);
+  animation: fireflyFloat ease-in-out infinite;
+}
+
+@keyframes fireflyFloat {
+  0%, 100% {
+    transform: translate(0, 0);
+    opacity: 0.3;
+  }
+  25% {
+    transform: translate(var(--fly-x1, 30px), var(--fly-y1, -40px));
+    opacity: 1;
+  }
+  50% {
+    transform: translate(var(--fly-x2, -20px), var(--fly-y2, -80px));
+    opacity: 0.5;
+  }
+  75% {
+    transform: translate(var(--fly-x3, 40px), var(--fly-y3, -120px));
+    opacity: 1;
+  }
+}
+
+/* Leaves */
+.leaf {
+  font-size: 1.5em;
+  animation: leafFall ease-in infinite;
+}
+
+@keyframes leafFall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(var(--sway, 50px));
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg) translateX(0);
+    opacity: 0;
+  }
+}
+
+/* Matrix Rain */
+.matrix-char {
+  color: #0f0;
+  font-family: 'Courier New', monospace;
+  font-weight: bold;
+  text-shadow: 0 0 8px #0f0;
+  animation: matrixRain linear infinite;
+}
+
+@keyframes matrixRain {
+  0% {
+    transform: translateY(-10px);
+    opacity: 1;
+  }
+  100% {
+    transform: translateY(100vh);
+    opacity: 0;
+  }
+}
+
+/* Sakura (Cherry Blossoms) */
+.sakura {
+  font-size: 1.2em;
+  color: #ffb7c5;
+  text-shadow: 0 0 5px rgba(255,183,197,0.8);
+  animation: sakuraFall ease-in-out infinite;
+}
+
+@keyframes sakuraFall {
+  0% {
+    transform: translateY(-10px) rotate(0deg);
+    opacity: 1;
+  }
+  50% {
+    transform: translateY(50vh) rotate(180deg) translateX(var(--drift, 40px));
+  }
+  100% {
+    transform: translateY(100vh) rotate(360deg);
+    opacity: 0;
+  }
+}

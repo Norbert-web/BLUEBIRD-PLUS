@@ -1,0 +1,573 @@
+/* ===== WINDOWS 11 SPLASH SCREEN ===== */
+#splash {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: var(--bg); /* Use desktop background variable */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 999999;
+    overflow: hidden;
+    font-family: 'Segoe UI', system-ui;
+}
+
+.splash-container {
+    position: relative;
+    z-index: 2;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 24px; /* Compact spacing */
+    animation: fadeInUp 0.4s var(--transition);
+}
+
+@keyframes fadeInUp {
+    from {
+        opacity: 0;
+        transform: translateY(10px);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0);
+    }
+}
+
+/* Logo Styles - Ultra Compact */
+.splash-logo-wrapper {
+    position: relative;
+    width: 80px; /* Very small */
+    height: 80px; /* Very small */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+/* PNG Logo */
+.splash-logo-image {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    animation: logoFloat 4s ease-in-out infinite;
+    filter: drop-shadow(0 2px 8px rgba(0, 120, 212, 0.3));
+}
+
+@keyframes logoFloat {
+    0%, 100% {
+        transform: translateY(0px);
+    }
+    50% {
+        transform: translateY(-4px); /* Very subtle float */
+    }
+}
+
+/* Text-based Logo Fallback - Windows Style */
+.splash-logo-text {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 6px; /* Minimal gap */
+    animation: logoFloat 4s ease-in-out infinite;
+}
+
+.logo-text-main {
+    display: flex;
+    gap: 2px; /* Tight spacing */
+    font-family: 'Segoe UI', system-ui;
+    font-weight: 700;
+    font-size: 24px; /* Small font */
+    letter-spacing: 1px;
+}
+
+.logo-letter {
+    display: inline-block;
+    color: var(--accent); /* Windows blue */
+    animation: letterPop 0.4s ease forwards;
+    opacity: 0;
+    transform: scale(0.8);
+}
+
+.logo-letter:nth-child(1) { animation-delay: 0.05s; }
+.logo-letter:nth-child(2) { animation-delay: 0.1s; }
+.logo-letter:nth-child(3) { animation-delay: 0.15s; }
+.logo-letter:nth-child(4) { animation-delay: 0.2s; }
+.logo-letter:nth-child(5) { animation-delay: 0.25s; }
+.logo-letter:nth-child(6) { animation-delay: 0.3s; }
+.logo-letter:nth-child(7) { animation-delay: 0.35s; }
+.logo-letter:nth-child(8) { animation-delay: 0.4s; }
+
+@keyframes letterPop {
+    0% {
+        opacity: 0;
+        transform: scale(0.8) translateY(10px);
+    }
+    70% {
+        transform: scale(1.05) translateY(0);
+    }
+    100% {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+    }
+}
+
+.logo-text-sub {
+    font-size: 9px; /* Very small */
+    font-weight: 500;
+    letter-spacing: 2px;
+    color: var(--text);
+    opacity: 0.7;
+    text-transform: uppercase;
+    animation: fadeIn 0.6s ease 0.5s forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    to { opacity: 1; }
+}
+
+/* Loading Section - Compact */
+.splash-loading {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px; /* Minimal spacing */
+    min-width: 200px; /* Very compact width */
+}
+
+.loading-text {
+    display: flex;
+    align-items: center;
+    gap: 6px; /* Small gap */
+    font-size: 13px; /* Small font */
+    font-weight: 500;
+    color: var(--text);
+    letter-spacing: 0.5px;
+}
+
+.loading-label {
+    animation: pulse 2s ease-in-out infinite;
+}
+
+@keyframes pulse {
+    0%, 100% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+.loading-dots {
+    display: flex;
+    gap: 3px; /* Tight spacing */
+}
+
+.dot {
+    width: 4px; /* Tiny dots */
+    height: 4px;
+    background: var(--text);
+    opacity: 0.3;
+    border-radius: 50%;
+    animation: dotBounce 1.2s ease-in-out infinite;
+}
+
+.dot:nth-child(1) { animation-delay: 0s; }
+.dot:nth-child(2) { animation-delay: 0.15s; }
+.dot:nth-child(3) { animation-delay: 0.3s; }
+
+@keyframes dotBounce {
+    0%, 60%, 100% {
+        opacity: 0.3;
+        transform: translateY(0);
+    }
+    30% {
+        opacity: 1;
+        transform: translateY(-4px); /* Small bounce */
+    }
+}
+
+/* Loading Bar - Windows 11 Style */
+.loading-bar {
+    width: 100%;
+    height: 2px; /* Thin bar */
+    background: var(--subtle);
+    border-radius: 1px;
+    overflow: hidden;
+}
+
+.loading-progress {
+    height: 100%;
+    background: var(--accent); /* Windows blue */
+    border-radius: 1px;
+    animation: progressBar 1.5s ease-in-out forwards;
+    box-shadow: 0 0 8px rgba(0, 120, 212, 0.4);
+}
+
+@keyframes progressBar {
+    from {
+        width: 0%;
+    }
+    to {
+        width: 100%;
+    }
+}
+
+.loading-status {
+    font-size: 11px; /* Very small */
+    color: var(--text);
+    opacity: 0.6;
+    font-weight: 400;
+    letter-spacing: 0.3px;
+    animation: statusFade 2s ease-in-out infinite;
+}
+
+@keyframes statusFade {
+    0%, 100% {
+        opacity: 0.6;
+    }
+    50% {
+        opacity: 0.9;
+    }
+}
+
+/* Version Info - Minimal */
+.splash-version {
+    position: absolute;
+    bottom: 24px; /* Close to edge */
+    font-size: 10px; /* Tiny */
+    color: var(--text);
+    opacity: 0.4;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    animation: fadeIn 0.8s ease 0.8s forwards;
+    opacity: 0;
+}
+
+/* Animated Background - Subtle */
+.splash-bg {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 1;
+    overflow: hidden;
+}
+
+.bg-gradient {
+    position: absolute;
+    top: -30%;
+    left: -30%;
+    width: 160%;
+    height: 160%;
+    background: radial-gradient(circle, rgba(0, 120, 212, 0.08) 0%, transparent 60%);
+    animation: gradientMove 15s linear infinite;
+}
+
+@keyframes gradientMove {
+    0% {
+        transform: translate(0, 0) scale(1);
+    }
+    33% {
+        transform: translate(5%, 5%) scale(1.1);
+    }
+    66% {
+        transform: translate(-5%, -5%) scale(0.9);
+    }
+    100% {
+        transform: translate(0, 0) scale(1);
+    }
+}
+
+/* Subtle Particles */
+.bg-particles {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+}
+
+.particle {
+    position: absolute;
+    width: 2px; /* Very small */
+    height: 2px;
+    background: var(--accent);
+    opacity: 0;
+    border-radius: 50%;
+    box-shadow: 0 0 4px rgba(0, 120, 212, 0.6);
+    animation: particleFloat 10s ease-in-out infinite;
+}
+
+/* Particle positions (reduced number for subtlety) */
+.particle:nth-child(1) {
+    top: 20%;
+    left: 20%;
+    animation-delay: 0s;
+    animation-duration: 12s;
+}
+
+.particle:nth-child(2) {
+    top: 60%;
+    left: 80%;
+    animation-delay: 2s;
+    animation-duration: 15s;
+}
+
+.particle:nth-child(3) {
+    top: 80%;
+    left: 30%;
+    animation-delay: 4s;
+    animation-duration: 18s;
+}
+
+.particle:nth-child(4) {
+    top: 40%;
+    left: 70%;
+    animation-delay: 1s;
+    animation-duration: 14s;
+}
+
+.particle:nth-child(5) {
+    top: 10%;
+    left: 50%;
+    animation-delay: 3s;
+    animation-duration: 16s;
+}
+
+@keyframes particleFloat {
+    0%, 100% {
+        transform: translate(0, 0) scale(0);
+        opacity: 0;
+    }
+    10%, 90% {
+        opacity: 0;
+    }
+    50% {
+        transform: translate(20px, -30px) scale(1);
+        opacity: 0.3;
+    }
+}
+
+/* Splash Exit Animation - Clean */
+#splash.fade-out {
+    animation: splashFadeOut 0.4s var(--transition) forwards;
+}
+
+@keyframes splashFadeOut {
+    to {
+        opacity: 0;
+        transform: scale(1.02);
+    }
+}
+
+/* Windows 11 Loading Rings Alternative */
+.loading-rings {
+    position: relative;
+    width: 48px;
+    height: 48px;
+}
+
+.loading-ring {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid transparent;
+    border-top-color: var(--accent);
+    animation: ringSpin 1s linear infinite;
+}
+
+.loading-ring:nth-child(2) {
+    width: 70%;
+    height: 70%;
+    top: 15%;
+    left: 15%;
+    animation: ringSpin 0.8s linear infinite reverse;
+    border-top-color: rgba(0, 120, 212, 0.6);
+}
+
+.loading-ring:nth-child(3) {
+    width: 40%;
+    height: 40%;
+    top: 30%;
+    left: 30%;
+    animation: ringSpin 0.6s linear infinite;
+    border-top-color: rgba(0, 120, 212, 0.4);
+}
+
+@keyframes ringSpin {
+    0% {
+        transform: rotate(0deg);
+    }
+    100% {
+        transform: rotate(360deg);
+    }
+}
+
+/* Progress Steps (Windows Setup Style) */
+.loading-steps {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    width: 200px;
+}
+
+.step-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    font-size: 11px;
+    color: var(--text);
+    opacity: 0.5;
+    transition: all 0.3s var(--transition);
+}
+
+.step-item.completed {
+    opacity: 1;
+    color: var(--accent);
+}
+
+.step-item.active {
+    opacity: 1;
+    font-weight: 500;
+}
+
+.step-check {
+    width: 12px;
+    height: 12px;
+    border-radius: 50%;
+    background: var(--subtle);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.step-item.completed .step-check {
+    background: var(--accent);
+}
+
+.step-check svg {
+    width: 8px;
+    height: 8px;
+    color: white;
+    opacity: 0;
+}
+
+.step-item.completed .step-check svg {
+    opacity: 1;
+    animation: checkPop 0.3s var(--transition);
+}
+
+@keyframes checkPop {
+    0% {
+        transform: scale(0);
+    }
+    70% {
+        transform: scale(1.2);
+    }
+    100% {
+        transform: scale(1);
+    }
+}
+
+/* Windows 11 Logo Variant */
+.windows-logo {
+    width: 60px;
+    height: 60px;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.windows-square {
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    background: var(--accent);
+    border-radius: 4px;
+    animation: windowsLogoFloat 4s ease-in-out infinite;
+}
+
+.windows-square:nth-child(1) {
+    top: 0;
+    left: 0;
+    animation-delay: 0s;
+}
+
+.windows-square:nth-child(2) {
+    top: 0;
+    right: 0;
+    animation-delay: 0.1s;
+}
+
+.windows-square:nth-child(3) {
+    bottom: 0;
+    left: 0;
+    animation-delay: 0.2s;
+}
+
+.windows-square:nth-child(4) {
+    bottom: 0;
+    right: 0;
+    animation-delay: 0.3s;
+}
+
+@keyframes windowsLogoFloat {
+    0%, 100% {
+        transform: translateY(0);
+    }
+    50% {
+        transform: translateY(-4px);
+    }
+}
+
+
+/* Theme Support */
+body.light-theme #splash {
+    background: #f3f3f3; /* Windows 11 light desktop */
+}
+
+body.light-theme .bg-gradient {
+    background: radial-gradient(circle, rgba(0, 120, 212, 0.05) 0%, transparent 60%);
+}
+
+body.light-theme .particle {
+    background: var(--accent);
+    box-shadow: 0 0 4px rgba(0, 120, 212, 0.4);
+}
+
+body.dark-theme #splash {
+    background: #202020; /* Windows 11 dark desktop */
+}
+
+body.dark-theme .bg-gradient {
+    background: radial-gradient(circle, rgba(0, 120, 212, 0.1) 0%, transparent 60%);
+}
+
+/* Quick Load Variant (for faster systems) */
+.splash-container.quick-load {
+    animation-duration: 0.2s;
+}
+
+.splash-container.quick-load .splash-logo-wrapper {
+    animation: none;
+}
+
+.splash-container.quick-load .loading-progress {
+    animation-duration: 0.8s;
+}
+
+/* No Animation Variant (for accessibility) */
+@media (prefers-reduced-motion: reduce) {
+    #splash * {
+        animation-duration: 0.01ms !important;
+        animation-iteration-count: 1 !important;
+        transition-duration: 0.01ms !important;
+    }
+}

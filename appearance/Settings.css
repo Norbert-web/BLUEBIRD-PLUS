@@ -1,0 +1,543 @@
+/* Settings - Small & Authentic */
+.settings-nav {
+    display: flex;
+    background: #f8f8f8;
+    border-bottom: 1px solid #e5e5e5;
+    padding: 0;
+    overflow-x: auto;
+    height: 42px; /* Smaller height */
+    min-height: 42px;
+}
+
+.settings-nav-item {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 10px 16px; /* Smaller padding */
+    cursor: pointer;
+    border-bottom: 2px solid transparent;
+    transition: all 0.1s ease;
+    white-space: nowrap;
+    font-size: 12px; /* Smaller font */
+    color: #323130;
+    background: transparent;
+    border-radius: 4px 4px 0 0;
+    margin: 0 2px;
+    min-height: 40px;
+}
+
+.settings-nav-item svg {
+    width: 14px; /* Smaller icons */
+    height: 14px;
+    flex-shrink: 0;
+    color: #605e5c;
+}
+
+.settings-nav-item:hover {
+    background: #f3f3f3;
+    color: #323130;
+}
+
+.settings-nav-item.active {
+    border-bottom-color: #0078d4; /* Windows blue */
+    background: #ffffff;
+    color: #323130;
+    font-weight: 500;
+}
+
+/* Settings Content - Windows 11 Style */
+.settings-content {
+    flex: 1;
+    overflow-y: auto;
+    padding: 16px; /* Smaller padding */
+    background: #ffffff;
+}
+
+.settings-section {
+    display: none;
+    max-width: 800px;
+}
+
+.settings-section.active {
+    display: block;
+}
+
+.settings-section-title {
+    font-size: 20px; /* Smaller title */
+    font-weight: 600;
+    color: #323130;
+    margin: 0 0 16px 0;
+    line-height: 1.3;
+}
+
+/* Settings Group -*/
+.settings-group {
+    background: #ffffff;
+    border: 1px solid #e1dfdd;
+    border-radius: 8px; /*  radius */
+    padding: 16px; /* Smaller padding */
+    margin-bottom: 12px;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.settings-group-header {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    margin-bottom: 16px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f3f2f1;
+}
+
+.settings-group-header svg {
+    width: 16px; /* Smaller icons */
+    height: 16px;
+    color: #0078d4; /* Windows blue */
+}
+
+.settings-group-header h3 {
+    margin: 0;
+    font-size: 14px; /* Smaller font */
+    font-weight: 600;
+    color: #323130;
+}
+
+/* Settings Item - Compact Layout */
+.settings-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 12px 0; /* Smaller padding */
+    gap: 12px;
+    min-height: 36px;
+}
+
+.settings-item:not(:last-child) {
+    border-bottom: 1px solid #f3f2f1;
+}
+
+.settings-item-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.settings-item-info {
+    flex: 1;
+    min-width: 0; /* Allow text truncation */
+}
+
+.settings-item-label {
+    font-size: 13px; /* Smaller font */
+    font-weight: 500;
+    color: #323130;
+    margin-bottom: 2px; /* Tighter spacing */
+    line-height: 1.4;
+}
+
+.settings-item-description {
+    font-size: 11px; /* Smaller font */
+    color: #605e5c;
+    line-height: 1.3;
+}
+
+/* Windows 11 Buttons */
+.settings-btn {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 6px 12px; /* Smaller padding */
+    background: #ffffff;
+    border: 1px solid #8a8886;
+    border-radius: 4px; /* Windows 11 radius */
+    color: #323130;
+    font-size: 12px; /* Smaller font */
+    cursor: pointer;
+    transition: all 0.1s ease;
+    white-space: nowrap;
+    height: 28px; /* Fixed height */
+    font-family: 'Segoe UI', system-ui;
+}
+
+.settings-btn svg {
+    width: 12px; /* Smaller icons */
+    height: 12px;
+    color: #605e5c;
+}
+
+.settings-btn:hover {
+    background: #f3f3f3;
+    border-color: #605e5c;
+}
+
+.settings-btn:active {
+    background: #e1dfdd;
+}
+
+.settings-btn-accent {
+    background: #0078d4; /* Windows blue */
+    border-color: #0078d4;
+    color: #ffffff;
+    font-weight: 500;
+}
+
+.settings-btn-accent:hover {
+    background: #106ebe;
+    border-color: #106ebe;
+}
+
+.settings-btn-small {
+    padding: 4px 8px;
+    background: #ffffff;
+    border: 1px solid #8a8886;
+    border-radius: 4px;
+    color: #323130;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    height: 24px;
+}
+
+.settings-btn-small:hover {
+    background: #f3f3f3;
+}
+
+/* Color Input - Windows Style */
+.settings-color-input {
+    width: 48px; /* Smaller */
+    height: 28px;
+    border: 1px solid #8a8886;
+    border-radius: 4px;
+    cursor: pointer;
+    background: #ffffff;
+    padding: 1px;
+}
+
+.settings-color-input::-webkit-color-swatch-wrapper {
+    padding: 0;
+}
+
+.settings-color-input::-webkit-color-swatch {
+    border: none;
+    border-radius: 2px;
+}
+
+.settings-color-input:hover {
+    border-color: #323130;
+}
+
+/* Radio Group */
+.settings-radio-group {
+    display: flex;
+    gap: 16px;
+}
+
+.settings-radio {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    color: #323130;
+}
+
+.settings-radio input {
+    cursor: pointer;
+    accent-color: #0078d4;
+    width: 14px;
+    height: 14px;
+}
+
+/* Select Dropdown */
+.settings-select {
+    min-width: 160px; /* Smaller */
+    padding: 5px 8px;
+    background: #ffffff;
+    border: 1px solid #8a8886;
+    border-radius: 4px;
+    color: #323130;
+    font-size: 12px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    height: 28px;
+    font-family: 'Segoe UI', system-ui;
+}
+
+.settings-select:hover {
+    border-color: #323130;
+}
+
+.settings-select:focus {
+    outline: none;
+    border-color: #0078d4;
+    box-shadow: 0 0 0 2px rgba(0, 120, 212, 0.1);
+}
+
+/* File Input */
+.settings-file-input {
+    padding: 6px;
+    background: #ffffff;
+    border: 1px solid #8a8886;
+    border-radius: 4px;
+    color: #323130;
+    font-size: 11px;
+    cursor: pointer;
+    min-width: 200px;
+}
+
+.settings-file-input::file-selector-button {
+    padding: 4px 8px;
+    background: #ffffff;
+    border: 1px solid #8a8886;
+    border-radius: 3px;
+    color: #323130;
+    font-size: 11px;
+    cursor: pointer;
+    margin-right: 8px;
+    font-family: 'Segoe UI', system-ui;
+}
+
+.settings-file-input::file-selector-button:hover {
+    background: #f3f3f3;
+}
+
+/* Wallpaper Grid */
+.wallpaper-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(80px, 1fr)); /* Smaller cards */
+    gap: 6px;
+}
+
+.wallpaper-preset {
+    padding: 8px;
+    background: #ffffff;
+    border: 1px solid #e1dfdd;
+    border-radius: 4px;
+    color: #323130;
+    font-size: 11px;
+    cursor: pointer;
+    transition: all 0.1s ease;
+    text-align: center;
+    aspect-ratio: 16/9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.wallpaper-preset:hover {
+    background: #f3f3f3;
+    border-color: #0078d4;
+    transform: none; /* Windows doesn't lift elements */
+}
+
+/* Slider */
+.settings-slider-container {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    min-width: 160px; /* Smaller */
+}
+
+.settings-slider {
+    flex: 1;
+    height: 2px; /* Thinner track */
+    background: #c8c6c4;
+    border-radius: 1px;
+    outline: none;
+    cursor: pointer;
+    -webkit-appearance: none;
+    appearance: none;
+}
+
+.settings-slider::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 12px; /* Smaller thumb */
+    height: 12px;
+    background: #0078d4;
+    border-radius: 50%;
+    cursor: pointer;
+    border: 2px solid #ffffff;
+    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.2);
+}
+
+.settings-slider::-webkit-slider-thumb:hover {
+    background: #106ebe;
+    transform: none; /* No scale effect */
+}
+
+.settings-slider-value {
+    min-width: 24px;
+    text-align: center;
+    font-size: 12px;
+    font-weight: 500;
+    color: #323130;
+}
+
+/* Toggle Switch  */
+.settings-toggle {
+    position: relative;
+    display: inline-block;
+    width: 40px; /* Smaller */
+    height: 20px;
+}
+
+.settings-toggle input {
+    opacity: 0;
+    width: 0;
+    height: 0;
+}
+
+.settings-toggle-slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #c8c6c4;
+    transition: 0.2s;
+    border-radius: 20px;
+    border: 1px solid transparent;
+}
+
+.settings-toggle-slider:before {
+    position: absolute;
+    content: "";
+    height: 16px;
+    width: 16px;
+    left: 1px;
+    bottom: 1px;
+    background-color: white;
+    transition: 0.2s;
+    border-radius: 50%;
+    box-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+}
+
+.settings-toggle input:checked + .settings-toggle-slider {
+    background-color: #0078d4;
+}
+
+.settings-toggle input:checked + .settings-toggle-slider:before {
+    transform: translateX(20px);
+    background-color: #ffffff;
+}
+
+.settings-toggle-slider:hover {
+    background-color: #a19f9d;
+}
+
+.settings-toggle input:checked + .settings-toggle-slider:hover {
+    background-color: #106ebe;
+}
+
+/* Badge */
+.settings-badge {
+    padding: 2px 6px;
+    background: #f3f2f1;
+    border: 1px solid #e1dfdd;
+    border-radius: 10px;
+    font-size: 10px;
+    font-weight: 600;
+    color: #605e5c;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* Scrollbar */
+.settings-content::-webkit-scrollbar {
+    width: 8px;
+}
+
+.settings-content::-webkit-scrollbar-track {
+    background: #f3f2f1;
+    border-radius: 4px;
+}
+
+.settings-content::-webkit-scrollbar-thumb {
+    background: #c8c6c4;
+    border-radius: 4px;
+}
+
+.settings-content::-webkit-scrollbar-thumb:hover {
+    background: #a19f9d;
+}
+
+/* Dark Theme Support */
+body.dark-theme .settings-nav {
+    background: #2d2d2d;
+    border-bottom-color: #404040;
+}
+
+body.dark-theme .settings-nav-item {
+    color: #ffffff;
+}
+
+body.dark-theme .settings-nav-item:hover {
+    background: #3c3c3c;
+}
+
+body.dark-theme .settings-nav-item.active {
+    background: #1f1f1f;
+    border-bottom-color: #0078d4;
+}
+
+body.dark-theme .settings-content {
+    background: #1f1f1f;
+}
+
+body.dark-theme .settings-group {
+    background: #2d2d2d;
+    border-color: #404040;
+}
+
+body.dark-theme .settings-item-label {
+    color: #ffffff;
+}
+
+body.dark-theme .settings-item-description {
+    color: #a6a6a6;
+}
+
+body.dark-theme .settings-btn {
+    background: #3c3c3c;
+    border-color: #5d5d5d;
+    color: #ffffff;
+}
+
+body.dark-theme .settings-btn:hover {
+    background: #4a4a4a;
+}
+
+/* Responsive - Even Smaller */
+@media (max-width: 600px) {
+    .settings-nav {
+        height: 36px;
+        min-height: 36px;
+    }
+    
+    .settings-nav-item {
+        padding: 8px 12px;
+        font-size: 11px;
+        min-height: 34px;
+    }
+    
+    .settings-content {
+        padding: 12px;
+    }
+    
+    .settings-item {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 8px;
+    }
+    
+    .settings-btn,
+    .settings-select,
+    .settings-slider-container {
+        width: 100%;
+    }
+    
+    .wallpaper-grid {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}

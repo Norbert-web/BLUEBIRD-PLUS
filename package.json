@@ -1,0 +1,32 @@
+{
+  "name": "bluebird-os",
+  "version": "2.2.0",
+  "description": "A modern web-based operating system interface",
+  "main": "index.html",
+  "scripts": {
+    "dev": "live-server . --port=3000 --watch=.,css,js,components",
+    "build": "node build.js --production",
+    "build:dev": "node build.js --development",
+    "lint": "eslint js/**/*.js",
+    "format": "prettier --write \"**/*.{js,html,css}\"",
+    "test": "jest --config jest.config.js"
+  },
+  "dependencies": {
+    "html2canvas": "^1.4.1",
+    "jszip": "^3.10.1"
+  },
+  "devDependencies": {
+    "live-server": "^1.2.2",
+    "esbuild": "^0.19.0",
+    "eslint": "^8.45.0",
+    "prettier": "^3.0.0",
+    "jest": "^29.6.0",
+    "concurrently": "^8.2.0"
+  },
+  "author": "Norbert Lamn",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/bluebird-ug/bluebird-os"
+  }
+// Alot of corrections needed here a lot ,I messed up I added lot s of new features but forgot to change some files referencing to them too and this comment is a bug by theway as comments are not permitted in .json sp dont forget to remove it

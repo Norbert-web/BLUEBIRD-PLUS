@@ -1,0 +1,15 @@
+{
+  "name": "BluebirdOS",
+  "short_name": "Bluebird",
+  "start_url": ".",
+  "display": "standalone",
+  "background_color": "#ffffff",
+  "theme_color": "#1070ff",
+  "icons": [
+    {
+      "src": "/assets/logo.png",
+      "sizes": "120x120",
+      "type": "image/svg+xml"
+    }
+  ]
+}

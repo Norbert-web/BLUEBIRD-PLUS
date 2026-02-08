@@ -1,0 +1,376 @@
+
+:root {
+    /* System Colors - Light Theme Default */
+    --bg: #f3f3f3; /* Desktop background */
+    --panel: #ffffff; /* Panel background */
+    --accent: #0078d4; /* Windows blue accent */
+    --text: #323130; /* Primary text */
+    --border: #e1dfdd; /* Default borders */
+    --surface: #ffffff; /* Surface color */
+    --subtle: #f3f2f1; /* Subtle background */
+    --taskbar-bg: #f6f6f6; /* Taskbar background */
+    
+    /* Windows 11 Window Colors */
+    --window-bg: #ffffff;
+    --titlebar-bg: #ffffff;
+    --titlebar-text: #323130;
+    
+    /* Transitions */
+    --transition: cubic-bezier(0.1, 0.9, 0.2, 1); /* animation curve */
+    --transition-fast: cubic-bezier(0.1, 0.9, 0.2, 1); /* Fast animation */
+    --transition-smooth: cubic-bezier(0.8, 0, 0.2, 1); /* Smooth animation */
+
+    /* Size variables -  */
+    --icon-size: 36px; /* Very small desktop icons */
+    --taskbar-item-size: 32px; /* Very small taskbar items */
+    --win-btn-size: 26px; /* Small window buttons */
+    --titlebar-height: 34px; /* Very compact titlebar */
+    --padding-sm: 8px; /* Small padding */
+    --padding-md: 12px; /* Medium padding */
+    --border-radius-sm: 4px; /* small radius */
+    --border-radius-md: 8px; /* medium radius */
+    
+    /* Font Sizes */
+    --font-size-xs: 10px; /* Caption, small labels */
+    --font-size-sm: 11px; /* Body small, settings */
+    --font-size-md: 12px; /* Body */
+    --font-size-lg: 14px; /* Title */
+    --font-size-xl: 16px; /* Large title */
+}
+
+/* Icon size variants - EXTREMELY SMALL */
+body.small-icons { 
+    --icon-size: 28px; /* Ultra small desktop icons */
+    --taskbar-item-size: 28px; /* Ultra small taskbar */
+    --win-btn-size: 24px; /* Tiny window buttons */
+    --titlebar-height: 32px; /* Ultra compact titlebar */
+}
+
+body.medium-icons { 
+    --icon-size: 36px; /* Default small */
+    --taskbar-item-size: 32px;
+    --win-btn-size: 26px;
+    --titlebar-height: 34px;
+}
+
+body.large-icons { 
+    --icon-size: 44px; /* Still quite small */
+    --taskbar-item-size: 40px;
+    --win-btn-size: 30px;
+    --titlebar-height: 40px;
+}
+
+/*  Light Theme (Default) */
+.light-theme {
+    --bg: #f3f3f3;
+    --panel: #ffffff;
+    --accent: #0078d4;
+    --text: #323130;
+    --border: #e1dfdd;
+    --surface: #ffffff;
+    --subtle: #f3f2f1;
+    --taskbar-bg: #f6f6f6;
+    --window-bg: #ffffff;
+    --titlebar-bg: #ffffff;
+    --titlebar-text: #323130;
+    --shadow-color: rgba(0, 0, 0, 0.08);
+    --hover-bg: #f3f3f3;
+}
+
+/* Dark Theme */
+.dark-theme {
+    --bg: #202020;
+    --panel: #2d2d2d;
+    --accent: #0078d4;
+    --text: #ffffff;
+    --border: #404040;
+    --surface: #2d2d2d;
+    --subtle: #1f1f1f;
+    --taskbar-bg: #2d2d2d;
+    --window-bg: #2d2d2d;
+    --titlebar-bg: #2d2d2d;
+    --titlebar-text: #ffffff;
+    --shadow-color: rgba(0, 0, 0, 0.3);
+    --hover-bg: #3c3c3c;
+}
+
+/* High Contrast */
+.high-contrast-theme {
+    --bg: #000000;
+    --panel: #000000;
+    --accent: #1aebff;
+    --text: #ffffff;
+    --border: #ffffff;
+    --surface: #000000;
+    --subtle: #1a1a1a;
+    --taskbar-bg: #000000;
+    --window-bg: #000000;
+    --titlebar-bg: #000000;
+    --titlebar-text: #ffffff;
+    --shadow-color: rgba(255, 255, 255, 0.3);
+    --hover-bg: #1a1a1a;
+}
+
+* { 
+    margin: 0; 
+    padding: 0; 
+    box-sizing: border-box; 
+}
+
+html, body { 
+    height: 100%; 
+    overflow: hidden;
+}
+
+body {
+    background: var(--bg);
+    font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+    color: var(--text);
+    font-size: var(--font-size-md);
+    line-height: 1.4;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    transition: background-color 0.2s var(--transition), 
+                color 0.2s var(--transition);
+}
+
+/* Icon Styles - Extremely Small & Clean */
+.icon-img {
+    width: var(--icon-size);
+    height: var(--icon-size);
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-sm);
+    box-shadow: 0 1px 3px var(--shadow-color);
+    transition: all 0.1s var(--transition);
+    padding: 4px;
+}
+
+.icon-img:hover {
+    background: var(--hover-bg);
+    border-color: var(--accent);
+    transform: scale(1.05);
+}
+
+.icon-img:active {
+    transform: scale(0.98);
+}
+
+/* Windows 11 Taskbar - Extremely Compact */
+#taskbar {
+    background: var(--taskbar-bg);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+    border-top: 1px solid var(--border);
+    box-shadow: 0 -1px 8px var(--shadow-color);
+    height: 42px; /* Very compact taskbar */
+    padding: 0 12px;
+}
+
+.taskbar-item {
+    width: var(--taskbar-item-size);
+    height: var(--taskbar-item-size);
+    border-radius: var(--border-radius-sm);
+    transition: all 0.1s var(--transition);
+    padding: 6px;
+}
+
+.taskbar-item:hover {
+    background: var(--hover-bg);
+}
+
+.taskbar-item.active {
+    background: var(--subtle);
+}
+
+/* Windows 11 Window - Extremely Compact */
+.window {
+    background: var(--window-bg);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-md);
+    box-shadow: 
+        0 2px 8px var(--shadow-color),
+        0 1px 2px rgba(0, 0, 0, 0.04);
+    transition: all 0.2s var(--transition);
+    min-width: 260px;
+    min-height: 160px;
+    backdrop-filter: none; /* doesn't blur windows */
+    -webkit-backdrop-filter: none;
+}
+
+.window:hover {
+    box-shadow: 
+        0 4px 12px var(--shadow-color),
+        0 2px 4px rgba(0, 0, 0, 0.06);
+}
+
+.window-header {
+    background: var(--titlebar-bg);
+    color: var(--titlebar-text);
+    border-bottom: 1px solid var(--border);
+    height: var(--titlebar-height);
+    padding: 0 8px;
+    font-size: var(--font-size-sm);
+    border-radius: var(--border-radius-md) var(--border-radius-md) 0 0;
+}
+
+/*  Start Menu - Compact */
+#start-menu {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-md);
+    box-shadow: 
+        0 8px 24px var(--shadow-color),
+        0 2px 8px rgba(0, 0, 0, 0.08);
+    backdrop-filter: blur(30px);
+    -webkit-backdrop-filter: blur(30px);
+    width: 320px; /* Compact width */
+    max-height: 400px; /* Compact height */
+}
+
+/* Power Menu -  */
+.power-menu {
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-md);
+    box-shadow: 
+        0 4px 16px var(--shadow-color),
+        0 2px 6px rgba(0, 0, 0, 0.06);
+    padding: 8px;
+    width: 140px; /* Very compact */
+}
+
+.power-option {
+    padding: 8px 12px;
+    border-radius: var(--border-radius-sm);
+    font-size: var(--font-size-sm);
+    transition: all 0.1s var(--transition);
+}
+
+.power-option:hover {
+    background: var(--hover-bg);
+}
+
+/* Lock Screen */
+.lock-screen {
+    background: var(--bg);
+    backdrop-filter: blur(40px);
+    -webkit-backdrop-filter: blur(40px);
+    font-family: 'Segoe UI', system-ui;
+}
+
+/* Snap Layout Picker */
+.snap-layout-grid {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 6px;
+    padding: 8px;
+    background: var(--surface);
+    border: 1px solid var(--border);
+    border-radius: var(--border-radius-md);
+    box-shadow: 0 4px 12px var(--shadow-color);
+}
+
+.snap-layout-option {
+    width: 70px; /* Compact */
+    height: 52px; /* Compact */
+    border-radius: var(--border-radius-sm);
+    border: 1px solid var(--border);
+    background: var(--subtle);
+    transition: all 0.1s var(--transition);
+    padding: 2px;
+}
+
+.snap-layout-option:hover {
+    border-color: var(--accent);
+    background: var(--hover-bg);
+}
+
+.snap-layout-preview {
+    width: 100%;
+    height: 100%;
+    display: flex;
+    gap: 1px;
+}
+
+/* Dragging window style */
+.window.dragging {
+    opacity: 0.9;
+    cursor: grabbing !important;
+    box-shadow: 
+        0 8px 24px var(--shadow-color),
+        0 0 0 1px var(--accent);
+}
+
+/* Snapped window indicator */
+.window[data-snapped] {
+    border-top: 2px solid var(--accent);
+}
+
+/* Snap preview animation */
+#snap-preview {
+    background: rgba(0, 120, 212, 0.1);
+    border: 2px solid var(--accent);
+    animation: snapPreviewPulse 1s ease-in-out infinite;
+}
+
+@keyframes snapPreviewPulse {
+    0%, 100% {
+        opacity: 0.4;
+    }
+    50% {
+        opacity: 0.7;
+    }
+}
+
+/* Scrollbar */
+::-webkit-scrollbar {
+    width: 8px; /* Thin scrollbar */
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: var(--subtle);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: var(--border);
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: var(--text);
+    opacity: 0.6;
+}
+
+/* Mobile mode overrides - Even more compact */
+@media (max-width: 768px) {
+    :root {
+        --icon-size: 32px;
+        --taskbar-item-size: 28px;
+        --titlebar-height: 32px;
+    }
+    
+    body {
+        font-size: var(--font-size-sm);
+    }
+    
+    .window {
+        min-width: 240px;
+        min-height: 140px;
+        border-radius: var(--border-radius-sm);
+    }
+}
+
+/* Focus styles for accessibility */
+:focus-visible {
+    outline: 2px solid var(--accent);
+    outline-offset: 2px;
+}
+
+/* Selection color */
+::selection {
+    background: var(--accent);
+    color: white;
+}

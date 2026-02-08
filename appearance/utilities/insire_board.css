@@ -1,0 +1,43 @@
+/* InspireBoard Styles */
+.inspire-card {
+  background: white;
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 4px 15px rgba(0,0,0,0.15);
+  transition: all 0.3s cubic-bezier(0.34, 1.56, 0.64, 1);
+  cursor: pointer;
+  animation: cardFadeIn 0.4s ease-out;
+}
+
+.inspire-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 12px 30px rgba(0,0,0,0.25);
+}
+
+@keyframes cardFadeIn {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.inspire-emoji.selected {
+  border-color: #667eea !important;
+  background: #f0f4ff !important;
+}
+
+#inspire-grid::-webkit-scrollbar {
+  width: 10px;
+}
+
+#inspire-grid::-webkit-scrollbar-track {
+  background: rgba(255,255,255,0.1);
+  border-radius: 5px;
+}
+
+#inspire-grid::-webkit-scrollbar-thumb {
+  background: rgba(255,255,255,0.3);
+  border-radius: 5px;
+}
+
+#inspire-grid::-webkit-scrollbar-thumb:hover {
+  background: rgba(255,255,255,0.5);
+}
